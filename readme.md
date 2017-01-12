@@ -1,21 +1,60 @@
-# Lumen PHP Framework
+# Product & Image Uploader
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## APIs
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+#### Product APIs
+- Create Product
+```
+POST /product/
 
-## Official Documentation
+Type: application/json
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+Body
+{
+	"name": "string",
+	"price": float.0
+}
 
-## Security Vulnerabilities
+Response
+{
+	"product_id": integer
+}
+```
+- List Products
+```
+GET /product/
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Response
+[{
+	"product_id": integer,
+	"name": "string",
+	"price": float.0
+}]
+```
+- Get Product with ID
+```
+GET /product/{id}
 
-## License
+Response
+{
+	"product_id": integer,
+	"name": "string",
+	"price": float.0
+}
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+#### Image APIs
+- Upload Image
+```
+POST /product/{product_id}/image
+
+Type: multipart/form-data
+
+Body
+"image" - File. 
+
+Response
+{
+	"image_id": integer
+}
+```
